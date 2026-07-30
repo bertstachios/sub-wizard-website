@@ -133,12 +133,12 @@
     }
     .step.reveal-init {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(36px);
     }
     .step.reveal-init.is-visible {
       opacity: 1;
       transform: none;
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     }
     @media (prefers-reduced-motion: reduce) {
       .step.reveal-init {
@@ -422,7 +422,7 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+      }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
 
       steps.forEach(function (el) { observer.observe(el); });
     })();

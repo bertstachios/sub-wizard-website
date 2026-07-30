@@ -62,22 +62,9 @@
       height: 54px;
       width: auto;
     }
-    .badge-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 180px;
-      height: 54px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-dim);
-      font-size: 13px;
-      text-decoration: none;
-    }
-    .badge-placeholder:hover {
-      border-color: var(--gold);
-      color: var(--gold);
+    .badge-disabled {
+      opacity: 0.55;
+      cursor: default;
     }
 
     /* ── How it works ── */
@@ -230,20 +217,18 @@
     <p class="subheading">Automatic rotations for fair playing time — define custom player rules for full control.</p>
 
     <!--
-      Google Play badge still a placeholder. Replace with the official
-      artwork from https://play.google.com/intl/en_us/badges/ (do not
-      hotlink a third-party copy), drop the file into assets/, and swap
-      the placeholder <a> below for an <img> the same way the App Store
-      badge above it was done. Both badges' href="#" should point at the
-      real App Store / Play Store listing URLs once the app is published.
+      Both badges use real store artwork now. Neither is a live link yet
+      — App Store's href="#" and Google Play's non-clickable <span>
+      should both point at the real store listing URLs once the app is
+      actually published on each store.
     -->
     <div class="badges">
       <a class="badge-link" href="#" aria-label="Download on the App Store">
         <img src="/assets/app-store-badge.svg" alt="Download on the App Store" />
       </a>
-      <a class="badge-link badge-placeholder" href="#" aria-label="Get it on Google Play (placeholder)">
-        Google Play — coming soon
-      </a>
+      <span class="badge-link badge-disabled" aria-label="Get it on Google Play — coming soon">
+        <img src="/assets/google-play-badge.svg" alt="Get it on Google Play — coming soon" />
+      </span>
     </div>
   </header>
 

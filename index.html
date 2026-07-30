@@ -72,7 +72,7 @@
 
     /* ── How it works ── */
     .how-it-works {
-      max-width: 1120px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 64px 20px;
     }
@@ -107,17 +107,19 @@
       gap: 64px;
       position: relative;
     }
-    /* Connecting timeline line behind the step numbers. */
+    /* Connecting timeline line behind the step numbers. Desktop-only
+       flourish — see the min-width:700px block below; on the single-
+       column mobile layout it would just cut through the middle of the
+       stacked content, so it's hidden by default here. */
     .steps::before {
       content: "";
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 50%;
       width: 2px;
       background: var(--border);
-      transform: translateX(-50%);
       z-index: 0;
+      display: none;
     }
     .step {
       display: flex;
@@ -202,8 +204,8 @@
 
     @media (min-width: 700px) {
       .steps::before {
+        display: block;
         left: 20px;
-        transform: none;
       }
       .step {
         flex-direction: row;
@@ -214,17 +216,23 @@
         flex: 0 0 40px;
       }
       .step-body {
+        /* Real cap + auto margins, independent of .how-it-works' own
+           max-width above — without this, flex:1 stretched step-body
+           to fill the whole row, and its two flex:1 children spread
+           apart to fill that width instead of sitting snug together. */
         flex: 1;
+        max-width: 700px;
+        margin: 0 auto;
         flex-direction: row;
         text-align: left;
         align-items: center;
-        gap: 40px;
+        gap: 48px;
       }
       .step-content {
         flex: 1;
       }
       .step-media {
-        flex: 1;
+        flex: 0 0 auto;
       }
       .step-media img {
         max-height: 560px;

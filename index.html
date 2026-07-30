@@ -32,14 +32,10 @@
       text-align: center;
     }
     .logo {
-      width: 96px;
-      height: 96px;
+      width: clamp(112px, 30vw, 144px);
+      height: clamp(112px, 30vw, 144px);
       border-radius: 22px;
-      margin-bottom: 24px;
-    }
-    h1 {
-      font-size: 32px;
-      margin: 0 0 12px;
+      margin-bottom: 20px;
     }
     .tagline {
       color: var(--text-dim);
@@ -81,15 +77,11 @@
       color: var(--gold);
       text-decoration: none;
     }
-    footer .support {
-      margin-top: 12px;
-    }
   </style>
 </head>
 <body>
   <main>
     <img class="logo" src="/assets/logo.png" alt="Sub Wizard" />
-    <h1>Sub Wizard</h1>
     <p class="tagline">Smart substitution planning for youth/amateur basketball coaches.</p>
 
     <!--
@@ -112,8 +104,7 @@
     </div>
 
     <footer>
-      <a href="/privacy.html">Privacy Policy</a>
-      <p class="support">Questions or support: <a href="mailto:terry.apps@proton.me">terry.apps@proton.me</a></p>
+      <a href="/privacy.html">Privacy Policy</a> · Questions or support: <a href="mailto:terry.apps@proton.me">terry.apps@proton.me</a>
     </footer>
   </main>
   <!-- redeploy trigger -->

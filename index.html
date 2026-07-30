@@ -40,13 +40,20 @@
       margin-bottom: 20px;
     }
     .hero h1 {
-      font-size: clamp(24px, 4vw + 12px, 34px);
-      margin: 0 0 12px;
+      font-size: clamp(20px, 3.3vw + 10px, 28px);
+      line-height: 1.25;
+      margin: 0 0 14px;
     }
     .hero .subheading {
       color: var(--text-dim);
       font-size: 17px;
-      margin: 0 0 40px;
+      margin: 0 0 14px;
+    }
+    .price-teaser {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 300;
+      margin: 0 0 32px;
     }
     .badges {
       display: flex;
@@ -65,17 +72,31 @@
 
     /* ── How it works ── */
     .how-it-works {
-      max-width: 1040px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 64px 20px;
     }
     .section-eyebrow {
       text-align: center;
       color: var(--text-dim);
-      font-size: 13px;
+      font-size: 16px;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin: 0 0 48px;
+      margin: 0 0 56px;
+      padding-bottom: 18px;
+      position: relative;
+    }
+    .section-eyebrow::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 44px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
     }
     .steps {
       list-style: none;
@@ -84,13 +105,50 @@
       display: flex;
       flex-direction: column;
       gap: 64px;
+      position: relative;
+    }
+    /* Connecting timeline line behind the step numbers. */
+    .steps::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--border);
+      transform: translateX(-50%);
+      z-index: 0;
     }
     .step {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 28px;
+      gap: 16px;
+      /* Scroll-reveal (see script at end of body). Default state is
+         fully visible so the section still works with JS disabled. */
+      opacity: 1;
+      transform: none;
+    }
+    .step.reveal-init {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .step.reveal-init.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .step.reveal-init {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+    .step-marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .step-number {
       width: 40px;
@@ -103,7 +161,16 @@
       justify-content: center;
       font-weight: 700;
       font-size: 17px;
-      margin: 0 auto 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 28px;
+      width: 100%;
     }
     .step-content {
       max-width: 420px;
@@ -134,14 +201,24 @@
     }
 
     @media (min-width: 700px) {
+      .steps::before {
+        left: 20px;
+        transform: none;
+      }
       .step {
         flex-direction: row;
-        text-align: left;
-        gap: 56px;
         align-items: center;
+        gap: 32px;
       }
-      .step-number {
-        margin: 0 0 16px;
+      .step-marker {
+        flex: 0 0 40px;
+      }
+      .step-body {
+        flex: 1;
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 40px;
       }
       .step-content {
         flex: 1;
@@ -152,7 +229,7 @@
       .step-media img {
         max-height: 560px;
       }
-      .step:nth-child(even) {
+      .step:nth-child(even) .step-body {
         flex-direction: row-reverse;
       }
     }
@@ -179,6 +256,9 @@
       color: var(--text-dim);
       font-size: 16px;
       margin: 0;
+    }
+    .pitch-card .badges {
+      margin-top: 28px;
     }
 
     /* ── Footer ── */
@@ -209,8 +289,9 @@
 <body>
   <header class="hero">
     <img class="logo" src="/assets/logo.png" alt="Sub Wizard" />
-    <h1>Basketball sub rotation management, like the pros run it.</h1>
-    <p class="subheading">Automatic rotations for fair playing time — define custom player rules for full control.</p>
+    <h1>Basketball rotations,<br />run like the pros.</h1>
+    <p class="subheading">The coaching companion that runs your rotation.</p>
+    <p class="price-teaser">Free for a month. A$14.99 once.</p>
 
     <!--
       Both badges use real store artwork now. Neither is a live link yet
@@ -231,53 +312,63 @@
     <h2 class="section-eyebrow">How it works</h2>
     <ol class="steps">
       <li class="step">
-        <div class="step-content">
-          <span class="step-number">1</span>
-          <h3>Add your roster — that's it.</h3>
-          <p>Sub Wizard automatically calculates how often players rotate, so every game has a fair rotation from day one.</p>
-        </div>
-        <div class="step-media">
-          <img src="/assets/screenshots/roster.png" alt="Roster screen showing a full player list with Add Player and Manage Rules options" loading="lazy" />
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-content">
-          <span class="step-number">2</span>
-          <h3>Add your own rules, whenever you want.</h3>
-          <p>Got a player who should always start? A player to designate less minutes? Set a rule once, and every future lineup enforces it automatically.</p>
-        </div>
-        <div class="step-media">
-          <img src="/assets/screenshots/manage-rules.png" alt="Manage Rules screen with a rule builder and a list of active player rules" loading="lazy" />
+        <div class="step-marker"><span class="step-number">1</span></div>
+        <div class="step-body">
+          <div class="step-content">
+            <h3>Add your roster — that's it.</h3>
+            <p>Sub Wizard automatically calculates how often players rotate, so every game has a fair rotation from day one.</p>
+          </div>
+          <div class="step-media">
+            <img src="/assets/screenshots/roster.png" alt="Roster screen showing a full player list with Add Player and Manage Rules options" loading="lazy" />
+          </div>
         </div>
       </li>
       <li class="step">
-        <div class="step-content">
-          <span class="step-number">3</span>
-          <h3>Take full control — if you want.</h3>
-          <p>Level up your coaching strategy by turning off auto mode and dialing in every number yourself.</p>
-        </div>
-        <div class="step-media">
-          <img src="/assets/screenshots/sub-settings.png" alt="Sub Settings screen showing the sub plan timeline and blocks-per-half controls" loading="lazy" />
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-content">
-          <span class="step-number">4</span>
-          <h3>Gameday is where the magic happens.</h3>
-          <p>Expecting seven players and only six show up? Tap who's absent on the Gameday tab, and your rotation recalculates instantly — no re-planning, no stress.</p>
-        </div>
-        <div class="step-media">
-          <img src="/assets/screenshots/gameday-setup.png" alt="Gameday setup screen for marking players absent before starting the game" loading="lazy" />
+        <div class="step-marker"><span class="step-number">2</span></div>
+        <div class="step-body">
+          <div class="step-content">
+            <h3>Add your own rules, whenever you want.</h3>
+            <p>Got a player who should always start? A player to designate less minutes? Set a rule once, and every future lineup enforces it automatically.</p>
+          </div>
+          <div class="step-media">
+            <img src="/assets/screenshots/manage-rules.png" alt="Manage Rules screen with a rule builder and a list of active player rules" loading="lazy" />
+          </div>
         </div>
       </li>
       <li class="step">
-        <div class="step-content">
-          <span class="step-number">5</span>
-          <h3>Watch the game and enjoy.</h3>
-          <p>Without Sub Wizard, your brain was always running the numbers — who's due for a rest, who's been on too long, who's up next. With Sub Wizard, you get to actually watch your team play and make better in-game coaching decisions.</p>
+        <div class="step-marker"><span class="step-number">3</span></div>
+        <div class="step-body">
+          <div class="step-content">
+            <h3>Take full control — if you want.</h3>
+            <p>Level up your coaching strategy by turning off auto mode and dialing in every number yourself.</p>
+          </div>
+          <div class="step-media">
+            <img src="/assets/screenshots/sub-settings.png" alt="Sub Settings screen showing the sub plan timeline and blocks-per-half controls" loading="lazy" />
+          </div>
         </div>
-        <div class="step-media">
-          <img src="/assets/screenshots/gameday-live.png" alt="Live Gameday screen mid-game showing the block timer and next substitutions" loading="lazy" />
+      </li>
+      <li class="step">
+        <div class="step-marker"><span class="step-number">4</span></div>
+        <div class="step-body">
+          <div class="step-content">
+            <h3>Gameday is where the magic happens.</h3>
+            <p>Expecting seven players and only six show up? Tap who's absent on the Gameday tab, and your rotation recalculates instantly — no re-planning, no stress.</p>
+          </div>
+          <div class="step-media">
+            <img src="/assets/screenshots/gameday-setup.png" alt="Gameday setup screen for marking players absent before starting the game" loading="lazy" />
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-marker"><span class="step-number">5</span></div>
+        <div class="step-body">
+          <div class="step-content">
+            <h3>Watch the game and enjoy.</h3>
+            <p>Without Sub Wizard, your brain was always running the numbers — who's due for a rest, who's been on too long, who's up next. With Sub Wizard, you get to actually watch your team play and make better in-game coaching decisions.</p>
+          </div>
+          <div class="step-media">
+            <img src="/assets/screenshots/gameday-live.png" alt="Live Gameday screen mid-game showing the block timer and next substitutions" loading="lazy" />
+          </div>
         </div>
       </li>
     </ol>
@@ -287,6 +378,14 @@
     <div class="pitch-card">
       <h2>Try it free. Buy it once.</h2>
       <p>Every feature unlocked for a full month — no credit card, no signup, nothing to cancel. If Sub Wizard earns a permanent spot on your bench, unlock it for A$14.99, one time. No subscription, ever.</p>
+      <div class="badges">
+        <a class="badge-link" href="#" aria-label="Download on the App Store">
+          <img src="/assets/app-store-badge.svg" alt="Download on the App Store" />
+        </a>
+        <a class="badge-link" href="#" aria-label="Get it on Google Play">
+          <img src="/assets/google-play-badge.svg" alt="Get it on Google Play" />
+        </a>
+      </div>
     </div>
   </section>
 
@@ -297,5 +396,28 @@
       <a href="mailto:terry.apps@proton.me">Contact: terry.apps@proton.me</a>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var steps = document.querySelectorAll('.how-it-works .step');
+      if (!steps.length) return;
+
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+      steps.forEach(function (el) { el.classList.add('reveal-init'); });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+      steps.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
 </body>
 </html>

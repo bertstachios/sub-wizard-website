@@ -62,10 +62,6 @@
       height: 54px;
       width: auto;
     }
-    .badge-disabled {
-      opacity: 0.55;
-      cursor: default;
-    }
 
     /* ── How it works ── */
     .how-it-works {
@@ -218,17 +214,16 @@
 
     <!--
       Both badges use real store artwork now. Neither is a live link yet
-      — App Store's href="#" and Google Play's non-clickable <span>
-      should both point at the real store listing URLs once the app is
-      actually published on each store.
+      — both href="#" placeholders should point at the real store
+      listing URLs once the app is actually published on each store.
     -->
     <div class="badges">
       <a class="badge-link" href="#" aria-label="Download on the App Store">
         <img src="/assets/app-store-badge.svg" alt="Download on the App Store" />
       </a>
-      <span class="badge-link badge-disabled" aria-label="Get it on Google Play — coming soon">
-        <img src="/assets/google-play-badge.svg" alt="Get it on Google Play — coming soon" />
-      </span>
+      <a class="badge-link" href="#" aria-label="Get it on Google Play">
+        <img src="/assets/google-play-badge.svg" alt="Get it on Google Play" />
+      </a>
     </div>
   </header>
 

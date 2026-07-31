@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sub Wizard</title>
+  <meta property="og:title" content="Sub Wizard — Smart basketball rotations" />
+  <meta property="og:description" content="The coaching companion that automates your substitutions. Try it free for 1 month." />
+  <meta property="og:image" content="https://sub-wizard.com/assets/logo.png" />
+  <meta property="og:url" content="https://sub-wizard.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/icon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/icon-16.png" />
@@ -16,21 +22,32 @@
       --text: #f2f0ea;
       --text-dim: #8a8a86;
       --gold: #d89a3e;
+      --section-space: 7rem;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: var(--bg);
+      background:
+        radial-gradient(ellipse 1000px 520px at 50% 0%, #1c1e23 0%, transparent 70%),
+        var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
+      animation: page-fade-in 250ms ease-out;
+    }
+    @keyframes page-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body { animation: none; }
     }
 
     /* ── Hero ── */
     .hero {
       max-width: 560px;
       margin: 0 auto;
-      padding: 64px 20px 48px;
+      padding: 64px 20px calc(var(--section-space) / 2);
       text-align: center;
     }
     .logo {
@@ -68,13 +85,18 @@
       display: block;
       height: 54px;
       width: auto;
+      transition: transform 180ms ease;
+    }
+    .badge-link:hover img,
+    .badge-link:focus-visible img {
+      transform: scale(1.03);
     }
 
     /* ── How it works ── */
     .how-it-works {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 64px 20px;
+      padding: calc(var(--section-space) / 2) 20px;
     }
     .section-eyebrow {
       text-align: center;
@@ -165,6 +187,7 @@
       font-size: 17px;
       position: relative;
       z-index: 1;
+      box-shadow: 0 0 22px 2px color-mix(in srgb, var(--gold) 35%, transparent);
     }
     .step-body {
       display: flex;
@@ -200,6 +223,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       background: var(--surface);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
     @media (min-width: 700px) {
@@ -246,7 +270,7 @@
     .pitch {
       max-width: 680px;
       margin: 0 auto;
-      padding: 32px 20px 80px;
+      padding: calc(var(--section-space) / 2) 20px calc(var(--section-space) / 2);
     }
     .pitch-card {
       background: var(--surface);
@@ -265,13 +289,36 @@
       font-size: 16px;
       margin: 0;
     }
+    .pitch-card p + p {
+      margin-top: 16px;
+    }
+    .pitch-checklist {
+      list-style: none;
+      margin: 20px 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+    }
+    .pitch-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-size: 15px;
+    }
+    .pitch-checklist .check {
+      color: var(--gold);
+      font-weight: 700;
+    }
     .pitch-card .badges {
       margin-top: 28px;
     }
 
     /* ── Footer ── */
     footer {
-      padding: 0 20px 64px;
+      padding: calc(var(--section-space) / 2) 20px calc(var(--section-space) / 2);
     }
     .footer-links {
       max-width: 560px;
@@ -385,7 +432,13 @@
   <section class="pitch">
     <div class="pitch-card">
       <h2>Try it free. Buy it once.</h2>
-      <p>Every feature unlocked for a full month — no credit card, no signup, nothing to cancel. If Sub Wizard earns a permanent spot on your bench, unlock it for $14.99, one time. No subscription, ever.</p>
+      <p>Every feature unlocked for a full month.</p>
+      <ul class="pitch-checklist">
+        <li><span class="check" aria-hidden="true">✓</span> No credit card</li>
+        <li><span class="check" aria-hidden="true">✓</span> No signup</li>
+        <li><span class="check" aria-hidden="true">✓</span> Nothing to cancel</li>
+      </ul>
+      <p>If Sub Wizard earns a permanent spot on your bench, unlock it for $14.99, one time. No subscription, ever.</p>
       <div class="badges">
         <a class="badge-link" href="#" aria-label="Download on the App Store">
           <img src="/assets/app-store-badge.svg" alt="Download on the App Store" />

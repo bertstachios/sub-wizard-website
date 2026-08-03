@@ -78,6 +78,7 @@
       flex-wrap: wrap;
     }
     .badge-link {
+      position: relative;
       display: inline-block;
     }
     .badge-link img {
@@ -89,6 +90,22 @@
     .badge-link:hover img,
     .badge-link:focus-visible img {
       transform: scale(1.03);
+    }
+    .coming-soon-tag {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      background: var(--gold);
+      color: color-mix(in srgb, var(--gold) 35%, black 65%);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      padding: 4px 7px;
+      border-radius: 999px;
+      white-space: nowrap;
+      pointer-events: none;
     }
 
     /* ── How it works ── */
@@ -370,9 +387,11 @@
     <div class="badges">
       <a class="badge-link" href="#" aria-label="Download on the App Store">
         <img src="/assets/app-store-badge.svg" alt="Download on the App Store" />
+        <span class="coming-soon-tag" aria-hidden="true">soon</span>
       </a>
       <a class="badge-link" href="#" aria-label="Get it on Google Play">
         <img src="/assets/google-play-badge.svg" alt="Get it on Google Play" />
+        <span class="coming-soon-tag" aria-hidden="true">soon</span>
       </a>
     </div>
   </header>
@@ -456,9 +475,11 @@
       <div class="badges">
         <a class="badge-link" href="#" aria-label="Download on the App Store">
           <img src="/assets/app-store-badge.svg" alt="Download on the App Store" />
+          <span class="coming-soon-tag" aria-hidden="true">soon</span>
         </a>
         <a class="badge-link" href="#" aria-label="Get it on Google Play">
           <img src="/assets/google-play-badge.svg" alt="Get it on Google Play" />
+          <span class="coming-soon-tag" aria-hidden="true">soon</span>
         </a>
       </div>
     </div>

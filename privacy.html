@@ -7,8 +7,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/icon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/icon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/icon-180.png" />
+  <meta name="theme-color" content="#0f1013" />
   <style>
     :root {
+      color-scheme: dark;
       --bg: #0f1013;
       --surface: #16181c;
       --border: #26282d;
@@ -17,6 +19,9 @@
       --gold: #d89a3e;
     }
     * { box-sizing: border-box; }
+    html {
+      background-color: var(--bg);
+    }
     body {
       margin: 0;
       padding: 32px 20px 64px;

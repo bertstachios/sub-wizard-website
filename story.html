@@ -84,15 +84,25 @@
       padding: 0 20px calc(var(--section-space) / 2);
     }
 
-    .story p {
-      font-size: 16px;
-      color: var(--text);
-      margin: 0 0 22px;
+    .story-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px 40px;
+      max-width: 680px;
+      margin: 0 auto;
     }
 
-    .story p.lede {
-      color: var(--text);
+    .story-card p {
       font-size: 17px;
+      line-height: 1.8;
+      letter-spacing: 0.005em;
+      color: var(--text);
+      margin: 0 0 26px;
+    }
+
+    .story-card p:last-child {
+      margin-bottom: 0;
     }
 
     /* story paragraphs are static — no scroll reveal, only the CTA card animates */
@@ -213,6 +223,7 @@
   </div>
 
   <div class="story">
+    <div class="story-card">
     <p>I've coached my local youth team for three seasons now. I didn't set out to build an app, I set out to be the best volunteer coach a team could have. My son started in Under-8s, on lowered rings, on a team of boys who differed hugely in raw ability and coachability.</p>
 
     <p>Basketball comes naturally to me. I've played with the same core group of friends in a local rec league for 27 years, long enough to know what makes a team special. I taught these boys what I learned: be a good teammate, look up and pass first, and give maximum effort.</p>
@@ -234,6 +245,7 @@
     <p>That's the app. I've been using it all season, and the real payoff surprised me: I finally get to watch the game. I hadn't realized how much mental space subs were taking up until it was gone. When the kids ask when they're subbing on, and they always do, I just glance at the app and tell them exactly how long, and who they're swapping with. No more arguing, the plan's already set, and they know it.</p>
 
     <p>I'm excited to finally share it. If any of this resonates, I built this for you.</p>
+    </div>
   </div>
 
   <div class="pitch-section">
